@@ -30,14 +30,14 @@ class Solution {
     int maxSubarraySum(vector<int> &arr) {
         int n=arr.size();
         int sum=0;
-        int mx=arr[0];
+        int mxa=arr[0];
         for(int i=0;i<n;i++){
             sum+=arr[i];
-            mx=max(sum,mx);
+            mxa=max(sum,mxa);
             if(sum<0){
                 sum=0;
             }
         }
-        return mx;
+        return mxa;
     }
 };
