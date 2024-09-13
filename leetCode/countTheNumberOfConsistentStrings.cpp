@@ -1,7 +1,4 @@
-
-Question Link:https://leetcode.com/problems/count-the-number-of-consistent-strings/?envType=daily-question&envId=2024-09-12
-
-Question:
+j
 // You are given a string allowed consisting of distinct characters and an array of strings words. A string is consistent if all characters in the string appear in the string allowed.
 
 // Return the number of consistent strings in the array words.
