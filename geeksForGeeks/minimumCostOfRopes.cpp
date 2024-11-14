@@ -43,7 +43,7 @@ class Solution {
             long long s=q.top();
             q.pop();
             cost+=f+s;
-            q.push(f+s);
+            q.push(f);
         }
         return cost;
     }
