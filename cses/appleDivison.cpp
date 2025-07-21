@@ -19,7 +19,7 @@ int main() {
     vector<int> arr(n);
     for (int i = 0; i < n; i++) {
         cin >> arr[i];
-    }
+    }  
     solve(arr,0,0,0);
     cout<<mn;
 
