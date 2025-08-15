@@ -1,50 +1,61 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void solve(string s){
-    unordered_map<char,int>m;
-    for(auto i:s){
-        m[i]++;
-    }
-
-    priority_queue<pair<char,int>>p;
-    for(auto i:m){
-        p.push({i.first,i.second});
-    }
-    string k="";
-    while(!p.empty()){
-        pair<char,int>i=p.top();
-        char k1=i.first;
-        int f1=i.second;
-        p.pop();
-        k+=k1;
-        if(!p.empty()){
-            pair<char,int>j=p.top();
-            char k2=j.first;
-            int f2=j.second;
-            p.pop();
-            k+=k2;
-            if(f2-1>0){
-                p.push({k2,f2-1});
-            }
-            if(f2-1==0 && f1-1>0){
-                k+=k1;
-                f1--;
-            }
-        }
-        if(f1-1>0 && p.empty()){
-            cout<<-1<<endl;
-            return;
-        }
-        if(f1-1>0){
-            p.push({k1,f1-1});
-        }
-    }
-    cout<<k<<endl;
-
-}
 int main() {
     string s;
     cin>>s;
+    vector<int>arr(26,0);
+    for(auto i:s){
+        arr[i-'A']++;
+    }
+    int n=s.size();
+    for(auto i:arr){
+        if(n%2==0 && i>n/2){
+            cout<<-1<<endl;
+            return 0;
+        }
+        else if(n%2!=0 && i>(n/2)+1){
+            cout<<-1<<endl;
+            return 0;
+        }
+    }
+    string ans="";
+    while(ans.size()<s.size()){
+        // cout<<ans<<endl;
+        int mf=0;
+        char ch;
+        for(int i=0;i<26;i++){
+            if(mf<arr[i]){
+                mf=arr[i];
+                ch='A'+i;
+            }
+        }
+        // cout<<mf<<" "<<n-ans.size()-mf<<" "<<ch<<endl;
+        if(mf-1==n-ans.size()-mf){
+            while(mf--){
+                ans+=ch;
+                arr[ch-'A']--;
+                for(int j=0;j<26;j++){
+                    char cur='A'+j;
+                    if(ans.back()!=cur && arr[j]>0){
+                        ans+=cur;
+                        arr[j]--;
+                        break;
+                    }
+                }
+            }
+        }
+        else{
+            for(int j=0;j<26;j++){
+                char cur='A'+j;
+                if(ans.back()!=cur && arr[j]>0){
+                    ans+=cur;
+                    arr[j]--;
+                    break;
+                }
+            }
+        }
+    }
+    cout<<ans;
 
 }
