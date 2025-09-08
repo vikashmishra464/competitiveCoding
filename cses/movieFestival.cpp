@@ -14,17 +14,17 @@ int main() {
     int cnt=1;
     int start=arr[0][0];
     int end=arr[0][1];
+
     for(int i=1;i<n;i++){
         int tstart=arr[i][0];
         int tend=arr[i][1];
-        if(end<=tstart){
-            // cout<<end<<" : "<<tend<<endl;
-            end=tend;
-            cnt++;
+        if((start<=tstart && tstart<end)||(start<=tend && tend<=end)){
+                end=min(end,tend);
         }
         else{
-            end=min(end,tend);
+            cnt++;
+            end=tend;
         }
     }
-    cout<<cnt;
+    cout<<cnt<<endl;
 }
