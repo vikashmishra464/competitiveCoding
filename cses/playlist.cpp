@@ -8,11 +8,16 @@ int main() {
     for(int i=0;i<n;i++){
         cin>>arr[i];
     }
-    sort(arr.begin(),arr.end());
-    long long ans=0;
+    map<int,int>m;
+    int ans=0;
+    int j=0;
     for(int i=0;i<n;i++){
-        ans+=abs(arr[n/2]-arr[i]);
+        m[arr[i]]++;
+        while(m[arr[i]]>1){
+            m[arr[j]]--;
+            j++;
+        }
+        ans=max(ans,i-j+1);
     }
     cout<<ans;
-
 }
